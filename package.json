@@ -1,5 +1,5 @@
 {
-  "name": "SvelteComponent",
+  "name": "@sveltecasts/svelte-youtube",
   "svelte": "src/index.svelte",
   "module": "index.mjs",
   "main": "index.js",
@@ -20,5 +20,18 @@
     "src",
     "index.mjs",
     "index.js"
-  ]
+  ],
+  "description": "*Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)*",
+  "version": "0.0.1",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sveltecasts/svelte-youtube.git"
+  },
+  "author": "Sveltecasts.dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sveltecasts/svelte-youtube/issues"
+  },
+  "homepage": "https://github.com/sveltecasts/svelte-youtube#readme"
 }
