@@ -3,7 +3,7 @@
 This Component allows you to add Youtube-Videos to your Svelte Project
 
 The orginal Component template comes from [HERE](https://github.com/sveltejs/component-template)
-
+The Youtube stuff comes from [HERE](https://developers.google.com/youtube/iframe_api_reference)
 
 ---
 
