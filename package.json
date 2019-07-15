@@ -21,8 +21,8 @@
     "index.mjs",
     "index.js"
   ],
-  "description": "*Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)*",
-  "version": "0.0.1",
+  "description": "Youtube Component for Svelte 3",
+  "version": "0.0.2",
   "dependencies": {},
   "repository": {
     "type": "git",
