@@ -12,7 +12,7 @@ The Youtube stuff comes from [HERE](https://developers.google.com/youtube/iframe
 Just
 
 ```bash
-npm install --save-dev @sveltecasts/svelte-youtube@0.0.4
+npm install --save-dev @sveltecasts/svelte-youtube@0.0.5
 
 ````
 
