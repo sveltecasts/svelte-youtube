@@ -12,7 +12,7 @@ The Youtube stuff comes from [HERE](https://developers.google.com/youtube/iframe
 Just
 
 ```bash
-npm install --save-dev @sveltecasts/svelte-youtube@0.0.3
+npm install --save-dev @sveltecasts/svelte-youtube@0.0.4
 
 ````
 
@@ -33,6 +33,6 @@ https://www.youtube.com/watch?v=Ank3IdQHOuE
 
 # Changelog
 
-0.0.3 Update svelte version
+0.0.4 Update svelte version
 0.0.2 Changed descripton
 0.0.1 Init
