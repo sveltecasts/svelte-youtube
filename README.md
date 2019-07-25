@@ -32,7 +32,7 @@ Here is a youtube video about this component:
 https://www.youtube.com/watch?v=Ank3IdQHOuE
 
 # Changelog
-0.0.4 Update readme :/
+
 0.0.3 Update svelte version
 0.0.2 Changed descripton
 0.0.1 Init
