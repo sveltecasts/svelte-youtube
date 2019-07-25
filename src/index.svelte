@@ -1,55 +1,70 @@
+<script context="module">
+  let YouTubeIframeAPIReady = false;
+</script>
 
 <script>
   let player;
-  import { createEventDispatcher , onMount} from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   const dispatch = createEventDispatcher();
-  let divId = "player_"+parseInt(Math.random() * 100000).toString()
+  let divId = "player_" + parseInt(Math.random() * 100000).toString();
   export let videoId;
-  export let height = '390';
-  export let width = '640';
+  export let height = "390";
+  export let width = "640";
+
   onMount(() => {
-      let ytTagUrl = "https://www.youtube.com/iframe_api";
-      if(!isMyScriptLoaded(ytTagUrl)){
-    // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement("script");
-        tag.src = ytTagUrl;
-        var firstScriptTag = document.getElementsByTagName("script")[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-       }
-      
-      window.onYouTubeIframeAPIReady = function() {
-        //console.log('hello')
-        window.dispatchEvent(new Event("YouTubeIframeAPIReady"))
+    let ytTagUrl = "https://www.youtube.com/iframe_api";
+    if (!isMyScriptLoaded(ytTagUrl)) {
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement("script");
+      tag.src = ytTagUrl;
+      var firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    window.onYouTubeIframeAPIReady = function() {
+      //console.log('hello')
+      window.dispatchEvent(new Event("YouTubeIframeAPIReady"));
+    };
+
+    window.addEventListener("YouTubeIframeAPIReady", function() {
+      if (YouTubeIframeAPIReady == false) {
+        // first load of an YT Video on this project
+        YouTubeIframeAPIReady = true; // now the Player can be created
+        createPlayer();
       }
+    });
+    function createPlayer() {
+      player = new YT.Player(divId, {
+        height,
+        width,
+        videoId: videoId,
+        events: {
+          //'onReady': onPlayerReady,
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+    if (YouTubeIframeAPIReady) {
+      createPlayer(); // if the YT Script is ready, we can create our player
+    }
+  });
 
-      window.addEventListener("YouTubeIframeAPIReady", function(){
-          console.log('load player..')
-          player =  new YT.Player(divId, {
-              height,
-              width,
-              videoId: videoId,
-              events: {
-                //'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-              }
-            });
-      })
-
-  })
-
-function isMyScriptLoaded(url ="") {
-    var scripts = document.getElementsByTagName('script');
-    for (var i = scripts.length; i--;) {
-        if (scripts[i].src == url) return true;
+  function isMyScriptLoaded(url = "") {
+    var scripts = document.getElementsByTagName("script");
+    for (var i = scripts.length; i--; ) {
+      if (scripts[i].src == url) return true;
     }
     return false;
-}
-
-  function onPlayerStateChange({data}){
-    dispatch("StateChange",data)
   }
-  export function playVideo(){
-    player.playVideo()
+
+  function onPlayerStateChange({ data }) {
+    dispatch("StateChange", data);
+  }
+  export function playVideo() {
+    player.playVideo();
   }
 </script>
-<div id={divId}></div>
+
+<div class="yt-component">
+  <div id={divId} />
+</div>
