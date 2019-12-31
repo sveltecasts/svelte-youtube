@@ -3,7 +3,8 @@
 </script>
 
 <script>
-  let player;
+  let youtube;
+  export let player;
   import { createEventDispatcher, onMount } from "svelte";
   const dispatch = createEventDispatcher();
   let divId = "player_" + parseInt(Math.random() * 100000).toString();
@@ -33,8 +34,16 @@
         createPlayer();
       }
     });
+
+    let handler = {
+      get: function(target, prop) {
+        var value = target[prop];
+        return typeof value == 'function' ? value.bind(target) : undefined;
+      }
+    }
+
     function createPlayer() {
-      player = new YT.Player(divId, {
+      youtube = new YT.Player(divId, {
         height,
         width,
         videoId: videoId,
@@ -43,6 +52,7 @@
           onStateChange: onPlayerStateChange
         }
       });
+      player = new Proxy(youtube, handler)
     }
     if (YouTubeIframeAPIReady) {
       createPlayer(); // if the YT Script is ready, we can create our player
@@ -59,9 +69,6 @@
 
   function onPlayerStateChange({ data }) {
     dispatch("StateChange", data);
-  }
-  export function playVideo() {
-    player.playVideo();
   }
 </script>
 

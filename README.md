@@ -7,21 +7,30 @@ The Youtube stuff comes from [HERE](https://developers.google.com/youtube/iframe
 
 ---
 
-# How to use it ?
-
-Just
+## Installation
 
 ```bash
-npm install --save-dev @sveltecasts/svelte-youtube@0.0.5
+npm install --save-dev @sveltecasts/svelte-youtube@0.0.6
 
 ````
 
-And in your Source Code under Script:
+# Example Usage
+
+You can use the `<Youtube />` component within any svelte component like this:
 
 ```
-import Youtube from "@sveltecasts/svelte-youtube";
+<script>
+  import Youtube from "@sveltecasts/svelte-youtube";
 
-<Youtube videoId="..." />
+  let player
+</script>
+
+<main>
+  <button on:click={() => player.playVideo()}>PLAY</button>
+  <button on:click={() => player.pauseVideo()}>PAUSE</button>
+  <Youtube videoId="QKCZSG4DtWc" bind:player={player} />
+</main>
+
 ```
 
 
